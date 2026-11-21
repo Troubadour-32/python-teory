@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python — теория и справочник</title>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--ink:#20283a;--muted:#68738a;--line:#e4e9f2;--accent:#6558d3;--accent2:#eeeaff;--code:#172033;--green:#16845b;--orange:#b66a16;--shadow:0 10px 30px rgba(30,45,80,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(125deg,#242d48,#5148a5);color:white;padding:34px 22px 28px}
+.head{max-width:1180px;margin:auto}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c9c6ff;font-weight:700}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0}.subtitle{color:#e0e2f5;max-width:760px;margin:10px 0 0}
+.layout{max-width:1180px;margin:26px auto;padding:0 18px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start}
+nav{position:sticky;top:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+nav strong{display:block;margin:0 0 10px;font-size:14px}nav a{display:block;text-decoration:none;color:var(--muted);padding:7px 10px;border-radius:9px;font-size:14px}nav a:hover{background:var(--accent2);color:var(--accent)}
+main{min-width:0}.intro,.topic,.teacher{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow)}
+.intro{border-left:4px solid var(--accent)}h2{font-size:24px;margin:0 0 12px;line-height:1.3}h3{font-size:18px;margin:22px 0 8px}p{margin:8px 0 12px}.muted{color:var(--muted)}.tag{display:inline-block;background:var(--accent2);color:var(--accent);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:8px}
+.note{padding:13px 15px;border-radius:12px;background:#f0f7ff;border-left:3px solid #5b91d1;margin:14px 0}.warning{background:#fff7e9;border-color:#e6a23c}.success{background:#effaf5;border-color:#38a879}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f0f1f7;padding:2px 5px;border-radius:5px;color:#5144a5}
+pre{background:var(--code);color:#eaf0ff;border-radius:13px;padding:17px 18px;overflow:auto;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;margin:12px 0;position:relative}
+pre code{background:none;color:inherit;padding:0}.code-label{font-size:12px;color:#aeb9d4;text-transform:uppercase;letter-spacing:.08em}
+.example{border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin:14px 0}.example h4{margin:0 0 5px;font-size:15px}.output{background:#f4f6fa;border-radius:9px;padding:10px 13px;font-family:ui-monospace,monospace;font-size:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.mini{padding:14px;border:1px solid var(--line);border-radius:12px;background:#fcfcff}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--accent);color:white;font-weight:650;transition:.15s}button:hover{filter:brightness(1.08);transform:translateY(-1px)}button.secondary{background:#edf0f7;color:#39435b}button.danger{background:#b94343}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0}.trybox{background:#f8f8ff;border:1px solid #e3e0ff;border-radius:14px;padding:16px;margin-top:15px}
+input,textarea{font:inherit;border:1px solid #ccd3e1;border-radius:9px;padding:10px 12px;width:100%;background:white;color:var(--ink)}textarea{min-height:150px;resize:vertical}.field{margin:9px 0}.field label{font-size:13px;font-weight:700;display:block;margin-bottom:5px}
+.result{font-size:14px;color:var(--green);min-height:24px;margin-top:7px}.hidden{display:none!important}
+footer{max-width:1180px;margin:0 auto;padding:10px 18px 36px;color:var(--muted);font-size:13px}
+.teacher{border:2px dashed #8c82df;background:#fbfaff}.teacher h2{color:#5146b5}.teacher small{color:var(--muted)}
+.topic-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}nav{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}nav strong{grid-column:1/-1}.grid2{grid-template-columns:1fr}}
+@media(max-width:520px){header{padding:26px 18px}.intro,.topic,.teacher{padding:18px}.layout{padding:0 12px;margin-top:14px}nav{grid-template-columns:1fr 1fr}h2{font-size:21px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="eyebrow">Учебный справочник • Python</div><h1>Основы Python</h1><p class="subtitle">Теория, понятные примеры и небольшие интерактивные демонстрации. Используй страницу как подсказку, когда решаешь задачи.</p></div></header>
+<div class="layout">
+<nav aria-label="Содержание"><strong>Содержание</strong>
+<a href="#variables">1. Переменные</a><a href="#print">2. print()</a><a href="#types">3. Типы и преобразование</a><a href="#input">4. input()</a><a href="#strings">5. Строки</a><a href="#logic">6. Логика в переменных</a><a href="#summary">7. Как не ошибиться</a>
+<div style="margin-top:12px;border-top:1px solid var(--line);padding-top:10px"><a href="#custom">Дополнительная теория</a></div></nav>
+<main>
+<section class="intro"><span class="tag">Как пользоваться</span><h2>Твой помощник при решении задач</h2>
+<p>Сначала прочитай объяснение, затем посмотри на пример и попробуй изменить значения в интерактивных блоках. Не обязательно запоминать весь код: важно понимать, <b>что делает каждая команда</b> и когда её использовать.</p>
+<div class="note"><b>Главная идея:</b> программа получает данные, хранит их в переменных, выполняет действия и выводит результат.</div></section>
+
+<section class="topic" id="variables"><span class="tag">Тема 01</span><h2>Переменные — место для хранения данных</h2>
+<p><b>Переменная</b> — это имя, под которым программа хранит какое-либо значение. Можно представить её как подписанную коробку: у коробки есть имя, а внутри лежит число, текст или результат вычисления.</p>
+<pre><span class="code-label">Пример</span>
+name = "Маша"
+age = 12
+height = 145.5</pre>
+<p>Здесь созданы три переменные:</p><ul><li><code>name</code> хранит строку <code>"Маша"</code>;</li><li><code>age</code> хранит целое число <code>12</code>;</li><li><code>height</code> хранит дробное число <code>145.5</code>.</li></ul>
+<h3>Как работает знак равенства?</h3><p>В Python один знак <code>=</code> означает <b>присваивание</b>: вычислить значение справа и сохранить его в переменную слева.</p>
+<pre>score = 5
+score = score + 3
+print(score)  # 8</pre>
+<p>Во второй строке Python берёт старое значение <code>score</code>, прибавляет 3 и сохраняет новое значение. Поэтому после выполнения переменная равна 8.</p>
+<div class="note warning"><b>Важно:</b> <code>=</code> — присваивание, а <code>==</code> — сравнение. Это разные операции.</div>
+<h3>Правила имени переменной</h3><ul><li>Имя может содержать английские буквы, цифры и символ подчёркивания <code>_</code>.</li><li>Нельзя начинать имя с цифры: <code>2name</code> — ошибка.</li><li>В имени нельзя использовать пробел: вместо <code>my age</code> напиши <code>my_age</code>.</li><li>Большие и маленькие буквы различаются: <code>age</code> и <code>Age</code> — разные имена.</li></ul>
+<div class="example"><h4>Пример из задачи</h4><p>Нужно сохранить количество яблок и вывести его.</p><pre>apples = 7
+print(apples)</pre><div class="output">Результат: 7</div></div></section>
+
+<section class="topic" id="print"><span class="tag">Тема 02</span><h2>Команда print() — вывод информации</h2>
+<p><code>print()</code> показывает на экране то, что находится внутри круглых скобок. С её помощью выводят текст, числа, значения переменных и результаты вычислений.</p>
+<h3>1. Вывод текста</h3><pre>print("Привет!")
+print('Я изучаю Python')</pre><p>Текст необходимо заключать в кавычки — одинарные или двойные. Главное — открывать и закрывать строку одинаковыми кавычками.</p>
+<h3>2. Вывод чисел и вычислений</h3><pre>print(10)
+print(4 + 6)
+print(20 - 3)</pre><div class="output">10<br>10<br>17</div>
+<h3>3. Вывод переменной</h3><pre>city = "Орёл"
+print(city)</pre><p>Если написать имя переменной без кавычек, Python выведет её значение. А вот <code>print("city")</code> выведет само слово city.</p>
+<h3>4. Несколько значений в одном print()</h3><pre>name = "Аня"
+age = 11
+print("Меня зовут", name, "мне", age, "лет")</pre><div class="output">Меня зовут Аня мне 11 лет</div>
+<p>Запятые позволяют передать в <code>print()</code> несколько значений. По умолчанию между ними ставится пробел.</p>
+<div class="trybox"><b>Попробуй сам: что выведет print()?</b><div class="field"><label for="printA">Значение переменной x</label><input id="printA" value="15"></div><div class="field"><label for="printB">Текст для вывода</label><input id="printB" value="Мой результат:"></div><button onclick="demoPrint()">Показать результат</button><div class="result" id="printResult" aria-live="polite"></div></div></section>
+
+<section class="topic" id="types"><span class="tag">Тема 03</span><h2>Типы данных и функции str(), int()</h2>
+<p>В Python у каждого значения есть тип. На этом этапе особенно важно различать <b>строку</b> и <b>число</b>.</p>
+<div class="grid2"><div class="mini"><b>int — целое число</b><p>Например: <code>7</code>, <code>0</code>, <code>-12</code>. С числами можно выполнять математические действия.</p></div><div class="mini"><b>str — строка</b><p>Текст или последовательность символов в кавычках: <code>"7"</code>, <code>"Привет"</code>.</p></div></div>
+<p>Обрати внимание: <code>7</code> и <code>"7"</code> выглядят похоже, но имеют разные типы. Первое — число, второе — текст.</p>
+<h3>Функция int()</h3><p><code>int()</code> преобразует значение в целое число, если это возможно.</p><pre>number = int("25")
+print(number + 5)</pre><div class="output">30</div>
+<p>Строка <code>"25"</code> превратилась в число <code>25</code>, поэтому Python смог прибавить 5.</p>
+<div class="note warning"><b>Важно:</b> <code>int("привет")</code> вызовет ошибку: слово нельзя превратить в целое число. Также <code>int("4.7")</code> не сработает, потому что строка содержит точку.</div>
+<h3>Функция str()</h3><p><code>str()</code> преобразует значение в строку. Это полезно, когда нужно соединить текст и число.</p><pre>age = 12
+message = "Мне " + str(age) + " лет"
+print(message)</pre><div class="output">Мне 12 лет</div>
+<p>Без <code>str(age)</code> нельзя напрямую соединить строку и целое число с помощью <code>+</code>.</p>
+<h3>Сравним на примере</h3><pre>a = "10"
+b = int(a)
+c = str(10)
+print(a, b, c)</pre><p>На экране будут похожие символы <code>10 10 10</code>, но типы переменных разные: <code>a</code> — строка, <code>b</code> — число, <code>c</code> — строка.</p>
+<div class="trybox"><b>Интерактивная проверка преобразования</b><div class="field"><label for="convertValue">Введи целое число</label><input id="convertValue" value="24"></div><div class="actions"><button onclick="convert('int')">Преобразовать в int</button><button class="secondary" onclick="convert('str')">Преобразовать в str</button></div><div class="result" id="convertResult" aria-live="polite"></div></div></section>
+
+<section class="topic" id="input"><span class="tag">Тема 04</span><h2>Команда input() — ввод данных</h2>
+<p><code>input()</code> позволяет программе получить данные от пользователя. Когда Python доходит до этой команды, программа ждёт, пока пользователь что-нибудь введёт и нажмёт Enter.</p>
+<pre>name = input("Как тебя зовут? ")
+print("Привет,", name)</pre>
+<p>Текст внутри скобок — подсказка, которую увидит пользователь. Введённое значение сохраняется в переменную <code>name</code>.</p>
+<h3>Очень важное правило: input() возвращает строку</h3>
+<p>Даже если пользователь ввёл цифры, Python сначала воспринимает их как текст. Если нужно выполнять математические действия, используй <code>int()</code>.</p>
+<pre>age = input("Сколько тебе лет? ")
+age = int(age)
+print(age + 1)</pre>
+<p>Можно записать короче — сразу преобразовать результат ввода:</p><pre>age = int(input("Сколько тебе лет? "))
+print(age + 1)</pre>
+<div class="note success"><b>Запомни:</b> <code>input()</code> — получить данные; <code>int(input())</code> — получить данные и превратить их в целое число.</div>
+<div class="trybox"><b>Попробуй ввод как в настоящей программе</b><div class="field"><label for="inputName">Как тебя зовут?</label><input id="inputName" value="Саша"></div><div class="field"><label for="inputAge">Сколько тебе лет?</label><input id="inputAge" value="12" inputmode="numeric"></div><button onclick="demoInput()">Запустить пример</button><div class="result" id="inputResult" aria-live="polite"></div></div></section>
+
+<section class="topic" id="strings"><span class="tag">Тема 05</span><h2>Работа со строками: upper(), lower(), len()</h2>
+<p><b>Строка</b> — это текст, состоящий из символов. Например: <code>"Python"</code>, <code>"Привет, мир!"</code>, <code>"12345"</code>.</p>
+<h3>Метод upper() — заглавные буквы</h3><p>Метод <code>upper()</code> возвращает новую строку, в которой все буквы переведены в верхний регистр.</p><pre>word = "Привет"
+print(word.upper())</pre><div class="output">ПРИВЕТ</div>
+<h3>Метод lower() — строчные буквы</h3><p>Метод <code>lower()</code> возвращает строку, в которой все буквы переведены в нижний регистр.</p><pre>word = "ПРИВЕТ"
+print(word.lower())</pre><div class="output">привет</div>
+<p>Эти методы часто нужны, чтобы сравнивать слова независимо от того, какими буквами их ввели.</p><pre>answer = input("Напиши да: ")
+if answer.lower() == "да":
+    print("Верно!")</pre>
+<h3>Функция len() — длина строки</h3><p><code>len()</code> считает количество символов в строке. Учитываются буквы, цифры, пробелы и знаки препинания.</p><pre>word = "Python"
+print(len(word))</pre><div class="output">6</div>
+<pre>text = "Привет, мир!"
+print(len(text))</pre><div class="output">12</div>
+<div class="note warning"><b>Не перепутай:</b> <code>upper()</code> и <code>lower()</code> записываются через точку после строки или переменной. А <code>len()</code> — отдельная функция, поэтому строка помещается внутрь скобок: <code>len(word)</code>.</div>
+<div class="trybox"><b>Поиграй со строкой</b><div class="field"><label for="stringValue">Введи любой текст</label><input id="stringValue" value="Привет, Python!"></div><div class="actions"><button onclick="stringAction('upper')">upper()</button><button onclick="stringAction('lower')">lower()</button><button onclick="stringAction('len')">len()</button></div><div class="result" id="stringResult" aria-live="polite"></div></div></section>
+
+<section class="topic" id="logic"><span class="tag">Тема 06</span><h2>Составные логические условия внутри переменных</h2>
+<p>Логическое выражение — это проверка, результатом которой становится одно из двух значений: <code>True</code> (истина) или <code>False</code> (ложь).</p>
+<p>Например, выражение <code>age >= 18</code> проверяет, больше ли возраст или равен 18.</p>
+<pre>age = 20
+is_adult = age >= 18
+print(is_adult)</pre><div class="output">True</div>
+<p>Переменная <code>is_adult</code> хранит не число и не текст, а результат проверки — логическое значение.</p>
+<h3>Оператор and — И</h3><p><code>and</code> объединяет несколько условий. Всё выражение будет истинным, только если <b>каждое</b> условие истинно.</p>
+<div class="example"><h4>Пример</h4><pre>temperature = 22
+sunny = True
+good_weather = temperature >= 20 and sunny == True
+print(good_weather)</pre><div class="output">True</div><p>Проверяются два условия: температура не меньше 20 И sunny равно True. Оба условия верны, поэтому результат — True.</p></div>
+<h3>Оператор or — ИЛИ</h3><p><code>or</code> объединяет условия так, что всё выражение истинно, если <b>хотя бы одно</b> условие истинно. Ложным оно будет только тогда, когда ложны все условия.</p>
+<div class="example"><h4>Пример</h4><pre>has_ticket = False
+has_invitation = True
+can_enter = has_ticket == True or has_invitation == True
+print(can_enter)</pre><div class="output">True</div><p>Билета нет, но приглашение есть. Одного выполненного условия достаточно, поэтому результат — True.</p></div>
+<h3>Разберём выражение из задач</h3><pre>b = 10
+c = 15
+a = b == 10 and c >= 12
+print(a)</pre>
+<p>Python вычисляет выражения справа налево по смыслу:</p><ol><li><code>b == 10</code> — проверка: b равно 10? Результат <code>True</code>.</li><li><code>c >= 12</code> — проверка: c больше или равно 12? Результат <code>True</code>.</li><li><code>True and True</code> даёт <code>True</code>.</li><li>Итоговое значение сохраняется в переменную <code>a</code>.</li></ol>
+<div class="note"><b>Важно:</b> в записи <code>a = b == 10 and c >= 12</code> переменная <code>a</code> получает результат всего логического выражения. В ней будет храниться <code>True</code> или <code>False</code>.</div>
+<h3>Как работает and и or: таблица</h3><div class="grid2"><div class="mini"><b>and — И</b><p>True and True → True<br>True and False → False<br>False and True → False<br>False and False → False</p></div><div class="mini"><b>or — ИЛИ</b><p>True or True → True<br>True or False → True<br>False or True → True<br>False or False → False</p></div></div>
+<h3>Интерактивный разбор условий</h3><p>Измени числа и выбери оператор. Посмотри, какое значение окажется в переменной <code>a</code>.</p>
+<div class="trybox"><div class="grid2"><div class="field"><label for="logicB">Значение b</label><input type="number" id="logicB" value="10"></div><div class="field"><label for="logicC">Значение c</label><input type="number" id="logicC" value="15"></div></div><div class="field"><label for="logicOp">Логический оператор</label><select id="logicOp" style="width:100%;padding:10px;border:1px solid #ccd3e1;border-radius:9px"><option value="and">and — оба условия должны быть верны</option><option value="or">or — достаточно одного условия</option></select></div><button onclick="logicDemo()">Вычислить a</button><div class="result" id="logicResult" aria-live="polite"></div></div>
+<h3>Ещё один пример с or</h3><pre>points = 75
+bonus = 0
+passed = points >= 80 or bonus >= 5
+print(passed)</pre><div class="output">False</div><p>Баллов меньше 80, бонус меньше 5. Ни одно из условий не выполнено, поэтому <code>passed</code> равно False.</p>
+<h3>Полезные операторы сравнения</h3><ul><li><code>==</code> — равно;</li><li><code>!=</code> — не равно;</li><li><code>&gt;</code> — больше;</li><li><code>&lt;</code> — меньше;</li><li><code>&gt;=</code> — больше или равно;</li><li><code>&lt;=</code> — меньше или равно.</li></ul>
+<div class="note warning"><b>Частая ошибка:</b> запись <code>a = b = 10</code> не означает проверку. Для сравнения используй два знака: <code>b == 10</code>.</div></section>
+
+<section class="topic" id="summary"><span class="tag">Шпаргалка</span><h2>Как выбрать нужную команду?</h2>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr style="text-align:left;background:#f2f3fa"><th style="padding:10px">Что нужно сделать</th><th style="padding:10px">Что использовать</th><th style="padding:10px">Пример</th></tr></thead><tbody>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Сохранить значение</td><td style="padding:10px;border-top:1px solid var(--line)"><code>=</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>age = 12</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Вывести результат</td><td style="padding:10px;border-top:1px solid var(--line)"><code>print()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>print(age)</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Получить ввод</td><td style="padding:10px;border-top:1px solid var(--line)"><code>input()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>name = input()</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Превратить в число</td><td style="padding:10px;border-top:1px solid var(--line)"><code>int()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>age = int(input())</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Превратить в текст</td><td style="padding:10px;border-top:1px solid var(--line)"><code>str()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>str(age)</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Сделать буквы заглавными</td><td style="padding:10px;border-top:1px solid var(--line)"><code>.upper()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>word.upper()</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Сделать буквы строчными</td><td style="padding:10px;border-top:1px solid var(--line)"><code>.lower()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>word.lower()</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Посчитать символы</td><td style="padding:10px;border-top:1px solid var(--line)"><code>len()</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>len(word)</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Проверить все условия</td><td style="padding:10px;border-top:1px solid var(--line)"><code>and</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>a &gt; 0 and b &gt; 0</code></td></tr>
+<tr><td style="padding:10px;border-top:1px solid var(--line)">Проверить хотя бы одно</td><td style="padding:10px;border-top:1px solid var(--line)"><code>or</code></td><td style="padding:10px;border-top:1px solid var(--line)"><code>a &gt; 0 or b &gt; 0</code></td></tr>
+</tbody></table></div>
+<div class="note success"><b>Совет при решении задачи:</b> сначала определи, какие данные нужно получить, какие переменные создать, какие действия выполнить и что вывести в конце. Затем подбирай команды из справочника.</div></section>
+
+<section class="topic" id="custom"><span class="tag">Дополнение</span><h2>Дополнительная теория</h2><p class="muted">Здесь появятся материалы, которые учитель добавит в режиме преподавателя.</p><div id="customBlocks"><p class="muted" id="emptyCustom">Пока дополнительных блоков нет.</p></div></section>
+</main></div>
+<footer>Учебный материал по основам Python. Интерактивные примеры выполняются в браузере и показывают результат для демонстрационных значений.</footer>
+
+<!-- Панель учителя открывается сочетанием Ctrl + Shift + T. -->
+<section class="teacher hidden" id="teacherPanel" style="max-width:1140px;margin:0 auto 30px">
+<h2>Режим учителя</h2><p>Добавляй собственные теоретические блоки. Они сохраняются в этом браузере на этом устройстве. Режим скрыт от обычного просмотра сочетанием клавиш <b>Ctrl + Shift + T</b>.</p>
+<div class="field"><label for="teacherTitle">Заголовок блока</label><input id="teacherTitle" placeholder="Например: Дополнительные примеры"></div>
+<div class="field"><label for="teacherText">Текст теории</label><textarea id="teacherText" placeholder="Напиши объяснение, примеры и подсказки. Можно использовать обычный текст и переносы строк."></textarea></div>
+<div class="actions"><button onclick="addTheory()">Добавить блок</button><button class="secondary" onclick="hideTeacher()">Скрыть панель</button></div>
+<div class="note warning"><b>Управление материалами:</b> добавленные блоки можно удалить кнопкой рядом с ними. Содержимое сохраняется через localStorage. Это локальная функция браузера, а не защищённая система аккаунтов.</div>
+<div id="teacherStatus" class="result"></div>
+</section>
+<script>
+const $ = id => document.getElementById(id);
+function demoPrint(){const a=$('printA').value,b=$('printB').value;$('printResult').textContent=b+' '+a;}
+function convert(kind){const v=$('convertValue').value; if(kind==='int'){if(!/^[+-]?\\d+$/.test(v.trim())){$('convertResult').textContent='Не получилось: введи целое число, например 24.';return;}$('convertResult').textContent='int("'+v+'") → '+parseInt(v,10)+' (число, тип int)';}else{$('convertResult').textContent='str('+v+') → "'+v+'" (строка, тип str)';}}
+function demoInput(){const name=$('inputName').value;const age=$('inputAge').value.trim();if(!/^[+-]?\\d+$/.test(age)){$('inputResult').textContent='Ошибка ввода: возраст для int() должен быть целым числом.';return;}$('inputResult').textContent='Привет, '+name+'. Через год тебе будет '+(Number(age)+1)+' лет.';}
+function stringAction(action){const v=$('stringValue').value;let out=action==='upper'?v.toUpperCase():action==='lower'?v.toLowerCase():String(v.length);$('stringResult').textContent=action+'() → '+out+(action==='len'?' символ(ов)':'');}
+function logicDemo(){const b=Number($('logicB').value),c=Number($('logicC').value),op=$('logicOp').value;const x=b===10,y=c>=12,result=op==='and'?x&&y:x||y;$('logicResult').textContent='b == 10 → '+x+'; c >= 12 → '+y+'; a = '+x+' '+op+' '+y+' → '+result;}
+const STORE='pythonTheoryCustomBlocksV1';
+function loadBlocks(){let items=[];try{items=JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){};const root=$('customBlocks');root.innerHTML='';if(!items.length){root.innerHTML='<p class="muted" id="emptyCustom">Пока дополнительных блоков нет.</p>';return;}items.forEach((item,i)=>{const article=document.createElement('article');article.className='example';const h=document.createElement('h3');h.textContent=item.title;const p=document.createElement('p');p.style.whiteSpace='pre-wrap';p.textContent=item.body;const btn=document.createElement('button');btn.className='secondary';btn.textContent='Удалить блок';btn.onclick=()=>deleteTheory(i);article.append(h,p,btn);root.append(article);});}
+function addTheory(){const title=$('teacherTitle').value.trim(),body=$('teacherText').value.trim();if(!title||!body){$('teacherStatus').textContent='Заполни заголовок и текст блока.';return;}let items=[];try{items=JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){}items.push({title,body});localStorage.setItem(STORE,JSON.stringify(items));$('teacherTitle').value='';$('teacherText').value='';$('teacherStatus').textContent='Блок добавлен и сохранён в этом браузере.';loadBlocks();}
+function deleteTheory(i){let items=[];try{items=JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){}items.splice(i,1);localStorage.setItem(STORE,JSON.stringify(items));loadBlocks();}
+function showTeacher(){const panel=$('teacherPanel');panel.classList.toggle('hidden');if(!panel.classList.contains('hidden'))panel.scrollIntoView({behavior:'smooth',block:'start'});}
+function hideTeacher(){$('teacherPanel').classList.add('hidden');}
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='t'){e.preventDefault();showTeacher();}});
+loadBlocks();
+</script>
+</body></html>
